@@ -1,5 +1,5 @@
 class Character:
-    def __init__(sefl, name, gender, species, origin, status, image, number_of_episodes):
+    def __init__(self, name, gender, species, origin, status, image, number_of_episodes):
         self.name = name
         self.gender = gender
         self.species = species
