@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,Year_month,Y6M,Manager,Director,Division,Revenue,Asset,Level_number,Staff_quantity
+0,202301,T1&2,Trưởng phòng 1,Giám đốc A,Corporate,10,12,27,6
+1,202301,T1&2,Trưởng phòng 1,Giám đốc A,Corporate,3,10,24,2
+2,202301,T1&2,Trưởng phòng 1,Giám đốc A,Corporate,9,11,25,5
+3,202301,T1&2,Trưởng phòng 2,Giám đốc A,Corporate,10,17,23,5
+4,202301,T1&2,Trưởng phòng 2,Giám đốc A,Corporate,7,20,25,2
+5,202301,T1&2,Trưởng phòng 2,Giám đốc A,Corporate,5,15,22,6
+19,202302,T1&2,Trưởng phòng 1,Giám đốc A,Corporate,6,15,28,4
+20,202302,T1&2,Trưởng phòng 1,Giám đốc A,Corporate,10,16,21,4
+21,202302,T1&2,Trưởng phòng 1,Giám đốc A,Corporate,8,14,20,5
+22,202302,T1&2,Trưởng phòng 2,Giám đốc A,Corporate,6,17,23,3
+23,202302,T1&2,Trưởng phòng 2,Giám đốc A,Corporate,5,20,29,1
+24,202302,T1&2,Trưởng phòng 2,Giám đốc A,Corporate,10,20,28,3
+25,202302,T1&2,Trưởng phòng 3,Giám đốc B,Corporate,8,16,21,3
+26,202302,T1&2,Trưởng phòng 3,Giám đốc B,Corporate,1,17,23,6
+27,202302,T1&2,Trưởng phòng 3,Giám đốc B,Corporate,9,11,24,4
+28,202302,T1&2,Trưởng phòng 4,Giám đốc B,Corporate,8,10,30,6
+29,202302,T1&2,Trưởng phòng 4,Giám đốc B,Corporate,2,13,29,4
+30,202302,T1&2,Trưởng phòng 4,Giám đốc B,Corporate,5,20,24,2
+38,203303,T3&4,Trưởng phòng 1,Giám đốc A,Corporate,2,20,21,2
+39,203303,T3&4,Trưởng phòng 1,Giám đốc A,Corporate,4,18,29,6
+40,203303,T3&4,Trưởng phòng 1,Giám đốc A,Corporate,10,12,25,4
+41,203303,T3&4,Trưởng phòng 2,Giám đốc A,Corporate,8,14,29,3
+42,203303,T3&4,Trưởng phòng 2,Giám đốc A,Corporate,2,16,24,2
+43,203303,T3&4,Trưởng phòng 2,Giám đốc A,Corporate,3,15,22,4
+44,203303,T3&4,Trưởng phòng 3,Giám đốc B,Corporate,9,19,24,3
+45,203303,T3&4,Trưởng phòng 3,Giám đốc B,Corporate,7,15,23,5
+46,203303,T3&4,Trưởng phòng 3,Giám đốc B,Corporate,2,20,21,2
+47,203303,T3&4,Trưởng phòng 4,Giám đốc B,Corporate,8,15,27,4
+48,203303,T3&4,Trưởng phòng 4,Giám đốc B,Corporate,1,16,20,5
+49,203303,T3&4,Trưởng phòng 4,Giám đốc B,Corporate,8,12,26,4
+57,204304,T3&4,Trưởng phòng 1,Giám đốc A,Corporate,2,16,30,6
+58,204304,T3&4,Trưởng phòng 1,Giám đốc A,Corporate,8,20,22,6
+59,204304,T3&4,Trưởng phòng 1,Giám đốc A,Corporate,9,11,27,1
+60,204304,T3&4,Trưởng phòng 2,Giám đốc A,Corporate,4,15,20,3
+61,204304,T3&4,Trưởng phòng 2,Giám đốc A,Corporate,4,20,26,1
+62,204304,T3&4,Trưởng phòng 2,Giám đốc A,Corporate,4,11,25,5
+63,204304,T3&4,Trưởng phòng 3,Giám đốc B,Corporate,1,11,29,1
+</div>
+    </body>
+</html>
